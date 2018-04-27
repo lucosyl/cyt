@@ -1,0 +1,44 @@
+/*
+* @Author: Administrator
+* @Date:   2018-04-21 13:42:23
+* @Last Modified by:   Administrator
+* @Last Modified time: 2018-04-25 16:16:27
+*/
+.delete,.fa-angle-right,.fa-angle-down{
+	cursor: pointer;
+}
+.second {
+	display: none;
+}
+
+.two{
+	text-indent: 10px;
+}
+
+#addC{
+	width: 50%;
+	position: absolute;
+	top:25%;
+	left: 20%;
+	height: 45vh;
+	background: white;
+	box-shadow: 1px 1px 1px #aaa;
+	border-radius: 5px;
+}
+
+#addC .addHead{
+	display: block;
+	margin:0px;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	background: whitesmoke;
+
+}
+
+.addHead i{
+	float:right;
+	line-height: 40px;
+	margin-right:20px;
+}

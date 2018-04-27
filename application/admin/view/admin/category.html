@@ -1,0 +1,364 @@
+        {include file="admin/navigator"}
+<div id="page-wrapper" >
+  <div class="header"> 
+                <h1 class="page-header">
+                     分类管理
+                </h1>
+				<ol class="breadcrumb">
+			  <li><a href="/homes.html">首页</a></li>
+			  <li class="active">分类管理</li>
+			</ol> 
+	</div>
+
+	<div id="page-inner"> 
+        <div class="row">
+        	<div class="col-md-12 col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            分类管理
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#home" data-toggle="tab" aria-expanded="false">文章分类</a>
+                                </li>
+                                <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">产品分类</a>
+                                </li>
+                                <li class=""><a href="#navi" data-toggle="tab" aria-expanded="false">导航分类</a>
+                                </li>
+                            <!--     <li class=""><a href="#settings" data-toggle="tab" aria-expanded="true">标签分类</a>
+                                </li> -->
+                          
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="home">
+                                    <div class="table-responsive">
+		                                <table class="table">
+		                                    <thead>
+		                                        <tr>
+		                                            <th>#</th>
+		                                            <th>分类名称</th>
+		                                            <th>最后修改时间</th>
+		                                            <th>操作</th>
+		                                        </tr>
+		                                    </thead>
+		                                    <tbody>
+		                                    	{volist name="article" id="vo"}
+		                                        <tr data-id="{$vo.pid}">
+		                                            <td>{$vo.id}</td>
+		                                            <td><input type="text" class="form-control cate" value="{$vo.category}" ></td>
+		                                            <td>{$vo.updatetime}</td>
+		                                            <td class="delete"><i class="fa fa-trash-o"></i></td>
+		                                        </tr>
+		                                        {/volist}
+		                             			
+		                                    </tbody>
+		                                </table>
+		                                 <button style="cursor:pointer;margin-top: 0px" class="plus btn btn-default" >
+	                               					<i class="fa fa-plus-square-o fa-lg "></i> &nbsp;&nbsp;添加
+                             			 </button>
+		                            </div>
+                                </div>
+                                <div class="tab-pane fade" id="profile">
+                                        <table class="table">
+		                                    <thead>
+		                                        <tr>
+		                                            <th>#</th>
+		                                            <th>分类名称</th>
+		                                            <th>最后修改时间</th>
+		                                            <th>操作</th>
+		                                        </tr>
+		                                    </thead>
+		                                    <tbody>
+		                                    	{volist name="product" id="vo"}
+		                                        <tr data-id="{$vo.pid}" {if condition="$vo.pid > 10" } class="second" {else} class="first" {/if} {if condition="$vo.has_child == '1'" }data-father='1'{else}data-father='0'{/if}>
+		                                            <td {if condition="$vo.has_child == '0'" }style="text-indent: 50px"{/if} {if condition="$vo.pid > 10"} class="two" {/if} >{if condition="$vo.has_child == '1'" }<i class="fa fa-angle-right fa-lg"></i>{/if}  {$vo.id}</td>
+		                                            <td><input type="text" class="form-control cate" value="{$vo.category}" ></td>
+		                                            <td>{$vo.updatetime}</td>
+		                                            <td class="delete"><i class="fa fa-trash-o"></i></td>
+		                                        </tr>
+		                                        {/volist}
+		                             
+		                                    </tbody>
+
+		                                </table>
+		                                 <button style="cursor:pointer;margin-top: 0px" class=" btn btn-default addc" >
+	                               					<i class="fa fa-plus-square-o fa-lg "></i> &nbsp;&nbsp;添加
+                             			 </button>
+		                            </div>
+                                <div class="tab-pane fade" id="navi">
+                                   <table class="table">
+		                                    <thead>
+		                                        <tr>
+		                                            <th>#</th>
+		                                            <th>导航名称</th>
+		                                            <th>导航链接</th>
+		                                            <th>排序</th>
+		                                            <th>操作</th>
+		                                        </tr>
+		                                    </thead>
+		                                    <tbody>
+		                                    	{volist name="navigator" id="vo"}
+		                                        <tr data-id="{$vo.pid}" {eq name='vo.has_child' value="1" } data-f="1" {else} data-f='0' {/eq}>
+		                                            <td >{$vo.id}</td>
+		                                            <td><input type="text" class="form-control" value="{$vo.category}" ></td>
+		                                            <td><input type="text" class="form-control" value="{$vo.attach}" ></td>
+		                                            <td><input type="text" class="form-control" value="{$vo.order}" ></td>
+		                                            <td class="delete"><i class="fa fa-trash-o"></i></td>
+		                                        </tr>
+		                                        {/volist}
+		                             
+		                                    </tbody>
+
+		                                </table>
+		                          <!--        <button style="cursor:pointer;margin-top: 0px" class=" btn btn-default plus" >
+	                               					<i class="fa fa-plus-square-o fa-lg "></i> &nbsp;&nbsp;添加
+                             			 </button> -->
+		                            </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div id="addC" style="display: none">
+		<div class="addHead "><span>添加分类</span><i class="fa fa-close fa-lg"></i></div>
+		<div class="row">
+                                <div class="col-lg-12">
+                                    <form role="form" id="form">
+                                    	<br>
+                                    	 <div class="form-group col-lg-8">
+                                            <label>父级分类 </label>
+                                            <select class="form-control fid" >
+		                                    	{volist name="select" id="vo"}
+												    <option value="{$key}">{$vo}</option>
+												{/volist}
+											</select>
+											<br>
+											<select class="form-control cid" >
+												    <option value="0">请选择</option>
+
+		                                    	{volist name="selecting" id="vo"}
+												    <option value="{$key}">{$vo}</option>
+												{/volist}
+											</select>
+						                </div>
+                                        <div class="form-group col-lg-8">
+                                            <label>分类名称 </label>
+                                            <input class="form-control" name='category' ">
+                                        </div>
+                                        <div class="form-group col-lg-8">
+                                            <label>是否有子分类:</label>  
+												  <input type="radio" name="has_child"  value="0" checked class=''>
+													无
+												</label>
+												  <input type="radio" name="has_child"  value="1" class=''>
+												  有
+												</label>                  </div>
+                                        
+                                        
+
+                                        <div class="form-group col-lg-12">
+		                                        <button type="submit" class="btn btn-default submit"><i class="fa fa-plus-square"></i> 添加 </button>
+
+                                 		</div>
+                                    </div>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                       
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+	</div>
+</div>
+
+
+
+</body>
+</html>
+{$js}
+<script>	
+
+
+	$('.submit').click(function(e){
+		e.preventDefault();
+		cid = $('.cid').val();
+		fid = $('.fid').val();
+		postId = (cid == '0')?fid:cid;
+		if ( !inputCheck('category') )return false;
+		formData = $("#form").serialize();
+		formData = formData+"&pid="+postId;
+		console.log(formData);
+		$.post('/addC',formData,function(data){
+			if( data.code==200 ){
+				alerting('添加成功');
+				setTimeout('window.reload()',2000);
+			}
+		})
+	})
+
+	$('.addc').click(function(){
+		$('#addC').fadeIn();
+	})
+
+	$('#addC .fa-close').click(function(){
+		$("#addC").fadeOut();
+	})
+
+	//添加父级分类
+	$('.fid').on('change',function(){
+
+		id = $(this).val();
+		if( id == 2002){
+			$('.cid').val(0);
+			$('.cid').fadeOut();
+		}else{
+			$('.cid').fadeIn();
+		}
+	})
+
+
+	//展开分类
+	$('.tab-content').on('click','.fa-angle-right',function(){
+		_len = $('.tab-content .active tbody .second').length;
+
+
+		for (var i = _len - 1; i >= 0; i--) {
+			pid = $(this).parents('td').text();
+			_ppid = $('.tab-content .active tbody .second').eq(i).attr('data-id');
+			if ( parseInt(pid) === parseInt(_ppid)){
+				$('.tab-content .active tbody .second').eq(i).fadeIn();
+				$('.tab-content .active tbody .second').eq(i).addClass('second_show');
+			}
+
+		}
+
+		$(this).removeClass('fa-angle-right');
+		$(this).addClass('fa-angle-down');
+	})
+
+	//收起分类
+	$('.tab-content').on('click','.fa-angle-down',function(){
+			if( $(this).parents('tr').hasClass('first') ){
+			$('.tab-content .active tbody .second').fadeOut();
+		}
+
+		_len = $('.tab-content .active tbody .second').length;
+		for (var i = _len - 1; i >= 0; i--) {
+			pid = $(this).parents('td').text();
+			_ppid = $('.tab-content .active tbody .second').eq(i).attr('data-id');
+			if ( parseInt(pid) === parseInt(_ppid)){
+				$('.tab-content .active tbody .second').eq(i).fadeOut();
+				$('.tab-content .active tbody .second').eq(i).removeClass('second_show');
+			}
+
+		}
+
+		$(this).addClass('fa-angle-right');
+		$(this).removeClass('fa-angle-down');
+	})
+
+
+
+
+
+	$('#home,#profile').on('blur','.cate',function(){
+		_value = $(this).val();
+		if( _value == '' || _value == null){
+			$(this).focus();
+			alerting('分类名称不能为空');
+			return false;
+		}
+		id = $(this).parents('tr').children('td').eq(0).text();
+		pid = $(this).parents('tr').attr('data-id');
+		_index = $(this).parents('tr').index();
+		updateCate(id,_value,pid,_index);
+	})
+
+	$("#navi").on('blur','input',function(){
+
+		_value = $(this).val();
+		if( _value == '' || _value == null){
+		$(this).focus();
+			alerting('当前输入框不能为空');
+			return false;
+		}
+		id = $(this).parents('tr').children('td').eq(0).text();
+		has_child = $(this).parents('tr').attr('data-f');
+		pid = $(this).parents('tr').attr('data-id');
+		_index = 'false';
+		_value = $(this).parents('tr').children('td').eq(1).children('input').val();
+		attach = $(this).parents('tr').children('td').eq(2).children('input').val();
+		order = $(this).parents('tr').children('td').eq(3).children('input').val();
+
+		 updateCate(id,_value,pid,_index,has_child,order,attach);
+	})
+
+	$('#profile').on('click','.delete',function(){
+		if( confirm('确定删除？') ){
+			id = $(this).parents('tr').children('td').eq(0).text();
+			_index = $(this).parents('tr').index();
+			deleteCate(id,_index);
+		}
+
+	})
+
+	//添加产品分类
+	// $('.pplus').on('click',function(){
+
+	// 	_len = $(".active .second_show").length;
+	// 	if( !_len ){
+	// 		id = $('.active .first:last').children('td').eq(0).text();
+	// 		nid = Number(id) + 1;
+	// 		pid = $('.active .first').attr('data-id');
+	// 		has_child = $('.active .first').attr('data-father'); 
+	// 		Ntime = getNow();
+
+	// 		content='<tr data-id="'+pid+'" data-father="'+has_child+'" class="first"><td><i class="fa fa-angle-right fa-lg"></i> '+nid+'</td>' +
+	// 			'<td><input type="text" class="form-control cate"  value=""></td>' +
+	// 			'<td>'+Ntime+'</td><td class="delete"><i class="fa fa-trash-o"></i></td></tr> ';
+	// 	$('.active tbody').append(content);
+	// 	}
+
+	// })
+
+
+	//添加文章分类
+	$('.plus').on('click',function(){
+		id = $('.active tbody tr:last').children('td').eq('0').text();
+		pid = $('.active tbody tr:last').attr('data-id');
+		Nid = Number(id) + 1;
+		Ntime = getNow();
+		content='<tr data-id="'+pid+'"><td>'+Nid+'</td>' +
+				'<td><input type="text" class="form-control"  value=""></td>' +
+				'<td>'+Ntime+'</td><td class="delete"><i class="fa fa-trash-o"></i></td></tr> ';
+		$('.active tbody').append(content);
+	})
+
+
+
+	function deleteCate(id,_index){
+		$.post('/admin/category/delete',{id:id},function(data){
+			if(data.code == 200){
+				$('.active tbody tr').eq(_index).fadeOut();
+			}else{
+				alerting(data.message);
+			}
+		})
+	}
+
+
+	function updateCate(id,category,pid,_index,has_child='0',order="",attach=""){
+		$.post('/admin/category/update',{id:id,category:category,pid:pid,has_child:has_child,order:order,attach:attach},function(data){
+			if(data.code == 200){
+				if(_index !== 'false'){
+					Ntime = getNow();
+					$('.active tbody tr').eq(_index).children('td').eq(2).text(Ntime);
+				}	
+			}
+		})
+
+	}
+</script>

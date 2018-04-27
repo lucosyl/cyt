@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{$title}</title>
+    {$css}    
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><strong>承御堂</strong></a>
+				
+		<div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+    
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> {$userInfo.name}</a>
+                        </li>
+               <!--          <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li> -->
+                        <li class="divider"></li>
+                        <li><a href="/logOut.html"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a  href="/homes.html" {eq name="action" value="index" } class="active-menu" {/eq}><i class="fa fa-dashboard"></i> 首页</a>
+                    </li>
+                    <li>
+                        <a ><i class="fa fa-book"></i> 文章 <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level {eq name='action' value='addart' } in{/eq} {eq name='action' value='articles' } in{/eq}"  >
+                            <li>
+                                <a href="/articles.html" {eq name="action" value="articles" } class="active-menu" {/eq}> 所有文章</a>
+                            </li>
+                            <li>
+                                <a href="/addArt.html" {eq name="action" value="addart" } class="active-menu" {/eq}>添加文章</a>
+                            </li>
+                        </ul>
+                    </li>
+					<li>
+                        <a href="/category.html" {eq name="action" value="category" } class="active-menu" {/eq}><i class="fa fa-tags"></i> 分类管理 </span></a>
+
+                    </li>
+                    <li>
+                        <a href="/promotion.html"  {eq name="action" value="promotion" } class="active-menu" {/eq}><i class="fa fa-qrcode"></i> 推广页管理</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/setting.html"  {eq name="action" value="setting" } class="active-menu" {/eq}><i class="fa fa-table"></i> 站点配置</a>
+                    </li>
+                  <!--   <li>
+                        <a href="form.html"><i class="fa fa-edit"></i> Forms </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">Second Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Second Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Second Level Link<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="empty.html"><i class="fa fa-fw fa-file"></i> Empty Page</a>
+                    </li> -->
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->

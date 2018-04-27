@@ -1,0 +1,103 @@
+        {include file="admin/navigator"}
+          <div id="page-wrapper" >
+		  <div class="header"> 
+                        <h1 class="page-header">
+                             添加文章 
+                        </h1>
+						<ol class="breadcrumb">
+					  <li><a href="/homes.html">首页</a></li>
+					  <li class="active">添加文章页</li>
+					</ol> 
+									
+		</div>
+		
+            <div id="page-inner"> 
+              <div class="row">
+                <div class="col-lg-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            添加文章
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form role="form">
+                                        <div class="form-group col-lg-8">
+                                            <label>标题 *</label>
+                                            <input class="form-control" name='title' value="{notempty name='edit'}{$edit.title}{/notempty}">
+                                        </div>
+                                        <div class="form-group col-lg-8">
+                                            <label>标签 *</label>
+                                            <input class="form-control" placeholder="每个标签请用','或空格隔开" name="label" value="{notempty name='edit'}{$edit.label}{/notempty}">
+                                        </div>
+                                        {notempty name="edit"} <input type="hidden" name="id" value="{$edit.id}" >{/notempty}
+                                        <div class="form-groupit col-lg-8">
+                                            <label>是否即时展示 :</label><br>
+                                                <label for="show">
+                                                <input type="radio" name="is_show" value="1" id="show" {notempty name="edit"}{eq name="edit.is_show" value= "1"} checked{/eq} {/notempty}> 是  
+                                                </label> 
+                                                <label for="hide">
+                                                <input type="radio" name="is_show" value="0"id="hide" {notempty name="edit"}{eq name="edit.is_show" value= "0"} checked{/else} checked{/eq} {/notempty} > 否
+                                                </label> 
+
+                                        </div>
+
+                                        <div class="form-group col-lg-8">
+                                            <label>点击数</label>
+                                            <input class="form-control" placeholder="500" name="click_num" value="{notempty name='edit'}{$edit.click_num}{/notempty}">
+                                        </div>
+                                        <div class="form-group col-lg-8">
+                                            <label>作者</label>
+                                            <input class="form-control" placeholder="Author" name="author" value="{notempty name='edit'}{$edit.author}{/notempty}">
+                                        </div>
+
+                                        <div class="form-group col-lg-8">
+                                            <label>来源</label>
+                                            <input class="form-control" placeholder="Source" name="source" value="{notempty name='edit'}{$edit.source}{/notempty}">
+                                        </div>
+												<input type="hidden" value="{$crsf}" name="crsf">
+                                         <div class="form-group col-lg-8">
+                                            <label>分类</label>
+                                            <select class="form-control" name="category">
+                                                {volist name="cate" id="vo"}
+                                                <option value="{$key}" {notempty name='edit'}{eq name='edit.category' value='$key'} selected{/eq}{/notempty} >{$vo}</option>
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                  
+                                        <div class="form-group col-lg-12">
+                                            <label>文章详情 *</label>
+						                        <div class="ibox float-e-margins text-boxs">
+						                            <div class="ibox-content no-padding">
+						                                <div class="summernote" id="summernote">{notempty name='edit'}{$edit.content}{/notempty}</div>
+						                            </div>
+						                        </div>
+
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                      
+                                        <button type="submit" class="btn btn-default">添加</button>
+                                        <button type="reset" class="btn btn-default">重新编辑</button>
+                                    </div>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                       
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+			<footer><p>Empower by larsun.</p></footer>
+			</div>
+             <!-- /. PAGE INNER  -->
+            </div>
+</div>
+</body>
+</html>
+{$js}
